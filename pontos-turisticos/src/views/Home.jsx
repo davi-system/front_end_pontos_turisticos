@@ -43,18 +43,18 @@ const Home = () => {
 
             {
                 pontosTuristicos.map((pontoTuristico) => [
-                    <div>
-                        <div className='card' key={pontoTuristico.id}>
+                    <div key={pontoTuristico.id}>
+                        <div className='card'>
                             <div className="card-header text-white" style={{ backgroundColor: "purple" }}>Ponto Turístico</div>
                             <div className="card-body">
-                                <h5 class="card-title">{pontoTuristico.nome}</h5>
-                                <p class="card-text" style={{ textAlign: "justify" }}>{pontoTuristico.descricao}</p>
+                                <h5 className="card-title">{pontoTuristico.nome}</h5>
+                                <p className="card-text" style={{ textAlign: "justify" }}>{pontoTuristico.descricao}</p>
                             </div>
                         </div>
 
                         <br />
 
-                        <button className='btn btn-warning'><Link to="/View" className='linkDetalhes'>Detalhes</Link></button>
+                        <button className='btn btn-warning'><Link to={`/View/${pontoTuristico.id}`} className='linkDetalhes'>Detalhes</Link></button>
 
                         <br /><br />
                     </div>
