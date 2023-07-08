@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import imgPontoTuristicos from '../img/pontos-turisticos.png';
 import api from '../axios/api';
+import Swal from 'sweetalert2';
 
 const Home = () => {
 
@@ -22,6 +23,21 @@ const Home = () => {
     useEffect(() => {
         getPontosTuristicos()
     }, []);
+
+    function deletarPontoTuristico(id) {
+
+        if (window.confirm('Deseja realmente excluir esse Ponto Turístico') == true) {
+            api.delete(`/PontosTuristicos/${id}`);
+            Swal.fire({
+                icon: 'success',
+                title: 'Ponto Turístico Excluido com Sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            setPontosTuristicos(pontosTuristicos.filter(pontoTuristico => pontoTuristico.id !== id));
+        }
+    }
 
     return (
         <div style={{ "width": "60%", "margin": "0 auto" }}>
@@ -45,7 +61,7 @@ const Home = () => {
                 pontosTuristicos.map((pontoTuristico) => [
                     <div key={pontoTuristico.id}>
                         <div className='card'>
-                            <div className="card-header text-white" style={{ backgroundColor: "purple" }}>Ponto Turístico</div>
+                            <div className="card-header text-white" style={{ backgroundColor: "purple" }}><i className="bi bi-signpost-2"></i> Ponto Turístico #{pontoTuristico.id}</div>
                             <div className="card-body">
                                 <h5 className="card-title">{pontoTuristico.nome}</h5>
                                 <p className="card-text" style={{ textAlign: "justify" }}>{pontoTuristico.descricao}</p>
@@ -54,7 +70,9 @@ const Home = () => {
 
                         <br />
 
-                        <button className='btn btn-warning'><Link to={`/View/${pontoTuristico.id}`} className='linkDetalhes'>Detalhes</Link></button>
+                        <button className='btn btn-warning' style={{ marginRight: "5px" }}><Link to={`/View/${pontoTuristico.id}`} className='linkDetalhes'><i className="bi bi-eye"></i> Detalhes</Link></button>
+                        <button className='btn btn-danger' style={{ marginRight: "5px" }} onClick={() => deletarPontoTuristico(pontoTuristico.id)}><i className="bi bi-trash"></i> Excluir</button>
+                        <button className='btn btn-success'><Link to={`/Edit/${pontoTuristico.id}`} className='linkDetalhes'><i className="bi bi-pen"></i> Editar</Link></button>
 
                         <br /><br />
                     </div>

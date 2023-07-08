@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './views/Home';
 import Add from './views/Add';
 import View from './views/View';
+import Edit from './views/Edit';
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     {
         path: "/View/:id",
         element: <View />
+    },
+    {
+        path: "/Edit/:id",
+        element: <Edit />
     }
 ]);
 

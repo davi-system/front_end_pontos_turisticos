@@ -1,29 +1,45 @@
-import './Add.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../axios/api';
 import imgPontoTuristicos from '../img/pontos-turisticos.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
-const Add = () => {
+const Edit = () => {
 
+    const { id } = useParams();
     let navigate = useNavigate();
-    const { register, handleSubmit } = useForm();
 
-    const addPontoTuristico = data => api.post('/PontosTuristicos', data)
+    const { register, handleSubmit, reset } = useForm();
+    
+    const [pontoTuristico, setPontoTuristico] = useState([]);
+
+    const getPontoTuristico = async () => {
+        try {
+            const response = await api.get(`/PontosTuristicos/${id}`);
+            const data = response.data;
+            setPontoTuristico(reset(data));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getPontoTuristico();
+    }, []);
+
+    const editPontoTuristico = data => api.put(`/PontosTuristicos/${id}`, data)
         .then(() => {
             Swal.fire({
                 icon: 'success',
-                title: 'Cadastro realizado com sucesso!',
+                title: 'Cadastro editado com sucesso!',
                 showConfirmButton: false,
                 timer: 1500
             });
 
             setTimeout(() => {
                 navigate('/');
-            }, 2000);
-
+            }, 2000);           
         }).catch((error) => {
             console.log(error);
         });
@@ -33,10 +49,10 @@ const Add = () => {
 
             <div className='modal-header' style={{ "marginTop": "10px" }}>
                 <img src={imgPontoTuristicos} alt="Imagem de Pontos Turísticos" style={{ width: "50%" }} />
-                <h2>Adicionar Ponto Turístico</h2>
+                <h2>Editar Ponto Turístico</h2>
             </div>
 
-            <form onSubmit={handleSubmit(addPontoTuristico)}>
+            <form onSubmit={handleSubmit(editPontoTuristico)}>
                 <div className='modal-body'>
                     <div className='col-md-12'>
 
@@ -50,7 +66,7 @@ const Add = () => {
                         <div className='row'>
                             <div className='col-md-2'>
                                 <label>Estado</label>
-                                <input type="text" className='form-control' name='uf' maxLength={2}  {...register('uf')} required />
+                                <input type="text" className='form-control' name='uf'  {...register('uf')} required />
                             </div>
 
                             <div className='col-md-10'>
@@ -95,4 +111,4 @@ const Add = () => {
     )
 }
 
-export default Add;
+export default Edit;
