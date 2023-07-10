@@ -1,3 +1,4 @@
+import './View.css';
 import React, { useState, useEffect } from 'react'
 import api from '../axios/api';
 import imgPontoTuristicos from '../img/pontos-turisticos.png';
@@ -10,6 +11,7 @@ const View = _ => {
     const { register, reset } = useForm();
     const [pontoTuristico, setPontoTuristico] = useState([]);
 
+    // Buscando ponto turístico
     const getPontoTuristico = async () => {
         try {
             const response = await api.get(`/PontosTuristicos/${id}`);
@@ -25,66 +27,96 @@ const View = _ => {
     }, []);
 
     return (
-        <div style={{ "width": "60%", "margin": "0 auto" }}>
-
-            <div className='modal-header' style={{ "marginTop": "10px" }}>
-                <img src={imgPontoTuristicos} alt="Imagem de Pontos Turísticos" style={{ width: "50%" }} />
+        <div className='main'>
+            <div className='modal-header header'>
+                <img src={imgPontoTuristicos} alt="Imagem de Pontos Turísticos" className='imgPontoTuristico' />
                 <h2>Visualizar Ponto Turístico</h2>
             </div>
+            
+            <div className='modal-body'>
+                <div className='col-md-12'>
 
-            <form>
+                    <div className='row'>
+                        <div className='col-md-12'>
+                            <label>Nome</label>
+                            <input 
+                                type="text" 
+                                className='form-control' 
+                                name='nome' 
+                                {...register('nome')} 
+                                disabled 
+                            />
+                        </div>
+                    </div>
 
-                <div className='modal-body'>
-                    <div className='col-md-12'>
-
-                        <div className='row'>
-                            <div className='col-md-12'>
-                                <label>Nome</label>
-                                <input type="text" className='form-control' name='nome' {...register('nome')} disabled />
-                            </div>
+                    <div className='row'>
+                        <div className='col-md-2'>
+                            <label>Estado</label>
+                            <input 
+                                type="text" 
+                                className='form-control' 
+                                name='uf' 
+                                {...register('uf')} 
+                                disabled 
+                            />
                         </div>
 
-                        <div className='row'>
-                            <div className='col-md-2'>
-                                <label>Estado</label>
-                                <input type="text" className='form-control' name='uf' {...register('uf')} disabled />
-                            </div>
-
-                            <div className='col-md-10'>
-                                <label>Cidade</label>
-                                <input type="text" className='form-control' name='cidade' {...register('cidade')} disabled />
-                            </div>
+                        <div className='col-md-10'>
+                            <label>Cidade</label>
+                            <input 
+                                type="text" 
+                                className='form-control' 
+                                name='cidade' 
+                                {...register('cidade')} 
+                                disabled 
+                            />
                         </div>
+                    </div>
 
-                        <div className='row'>
-                            <div className='col-md-12'>
-                                <label>Endereço</label>
-                                <input type="text" className='form-control' name='endereco' {...register('endereco')} disabled />
-                            </div>
+                    <div className='row'>
+                        <div className='col-md-12'>
+                            <label>Endereço</label>
+                            <input 
+                                type="text" 
+                                className='form-control' 
+                                name='endereco' 
+                                {...register('endereco')} 
+                                disabled 
+                            />
                         </div>
+                    </div>
 
-                        <div className='row'>
-                            <div className='col-md-12'>
-                                <label>Descrição</label>
-                                <textarea className='form-control' name='descricao' {...register('descricao')} disabled></textarea>
-                            </div>
+                    <div className='row'>
+                        <div className='col-md-12'>
+                            <label>Descrição</label>
+                            <textarea 
+                                className='form-control' 
+                                name='descricao' 
+                                {...register('descricao')} 
+                                disabled
+                            >                
+                            </textarea>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <br />
+            <br />
 
-                <div className='modal-footer'>
-                    <div className='col-md-12'>
-                        <div className='row'>
-                            <div className='col-md-6'>
-                                <button className='btn btn-secondary'><Link to={'/'} className='linkVoltar'><i className="bi bi-arrow-left"></i> Voltar</Link></button>
-                            </div>
+            <div className='modal-footer'>
+                <div className='col-md-12'>
+                    <div className='row'>
+                        <div className='col-md-6'>
+                            <button 
+                                className='btn btn-secondary'>
+                                <Link to={'/'} className='btnVoltar'>
+                                    <i className="bi bi-arrow-left"></i> Voltar
+                                </Link>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </form>
-
+            </div>
         </div>
     )
 }

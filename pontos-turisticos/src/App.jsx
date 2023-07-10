@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './views/Home';
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     }
 ]);
 
-const App = () => {
+const App = _ => {
     return (
         <div>
             <RouterProvider router={router} />

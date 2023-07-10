@@ -11,11 +11,11 @@
     width: 50%;
 }
 
-.btnVoltar {
-    text-decoration: none;
-    color: #fff;
-}
-
 .btnSalvar {
     text-align: right;
+}
+
+.btnVoltar {    
+    text-decoration: none;
+    color: #fff;    
 }

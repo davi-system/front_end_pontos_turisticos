@@ -1,3 +1,4 @@
+import './Edit.css';
 import React, { useState, useEffect } from 'react';
 import api from '../axios/api';
 import imgPontoTuristicos from '../img/pontos-turisticos.png';
@@ -8,12 +9,11 @@ import Swal from 'sweetalert2';
 const Edit = () => {
 
     const { id } = useParams();
+    const { register, handleSubmit, reset } = useForm();
+    const [pontoTuristico, setPontoTuristico] = useState([]);
     let navigate = useNavigate();
 
-    const { register, handleSubmit, reset } = useForm();
-
-    const [pontoTuristico, setPontoTuristico] = useState([]);
-
+    // Buscando ponto turístico
     const getPontoTuristico = async () => {
         try {
             const response = await api.get(`/PontosTuristicos/${id}`);
@@ -28,6 +28,8 @@ const Edit = () => {
         getPontoTuristico();
     }, []);
 
+    
+    // Editando ponto turístico
     const editPontoTuristico = data => api.put(`/PontosTuristicos/${id}`, data)
         .then(() => {
             Swal.fire({
@@ -40,15 +42,15 @@ const Edit = () => {
             setTimeout(() => {
                 navigate('/');
             }, 2000);
+            
         }).catch((error) => {
             console.log(error);
         });
 
     return (
-        <div style={{ "width": "60%", "margin": "0 auto" }}>
-
-            <div className='modal-header' style={{ "marginTop": "10px" }}>
-                <img src={imgPontoTuristicos} alt="Imagem de Pontos Turísticos" style={{ width: "50%" }} />
+        <div className='main'>
+            <div className='modal-header header'>
+                <img src={imgPontoTuristicos} alt="Imagem de Pontos Turísticos" className='imgPontoTuristico' />
                 <h2>Editar Ponto Turístico</h2>
             </div>
 
@@ -59,33 +61,64 @@ const Edit = () => {
                         <div className='row'>
                             <div className='col-md-12'>
                                 <label>Nome</label>
-                                <input type="text" className='form-control' name='nome'  {...register('nome')} required />
+                                <input 
+                                    type="text" 
+                                    className='form-control' 
+                                    name='nome'  
+                                    {...register('nome')} 
+                                    required 
+                                />
                             </div>
                         </div>
 
                         <div className='row'>
                             <div className='col-md-2'>
                                 <label>Estado</label>
-                                <input type="text" className='form-control' name='uf'  {...register('uf')} required />
+                                <input 
+                                    type="text" 
+                                    className='form-control' 
+                                    name='uf'  
+                                    {...register('uf')} 
+                                    required 
+                                />
                             </div>
 
                             <div className='col-md-10'>
                                 <label>Cidade</label>
-                                <input type="text" className='form-control' name='cidade'  {...register('cidade')} required />
+                                <input 
+                                    type="text" 
+                                    className='form-control' 
+                                    name='cidade'  
+                                    {...register('cidade')} 
+                                    required 
+                                />
                             </div>
                         </div>
 
                         <div className='row'>
                             <div className='col-md-12'>
                                 <label>Endereço</label>
-                                <input type="text" className='form-control' name='endereco'  {...register('endereco')} required />
+                                <input 
+                                    type="text" 
+                                    className='form-control' 
+                                    name='endereco'  
+                                    {...register('endereco')} 
+                                    required 
+                                />
                             </div>
                         </div>
 
                         <div className='row'>
                             <div className='col-md-12'>
                                 <label>Descrição</label>
-                                <textarea className='form-control' name='descricao' maxLength={200} {...register('descricao')} required></textarea>
+                                <textarea 
+                                    className='form-control' 
+                                    name='descricao' 
+                                    maxLength={200} 
+                                    {...register('descricao')} 
+                                    required
+                                >                                    
+                                </textarea>
                             </div>
                         </div>
                     </div>
@@ -97,11 +130,19 @@ const Edit = () => {
                     <div className='col-md-12'>
                         <div className='row'>
                             <div className='col-md-6'>
-                                <button className='btn btn-secondary'><Link to={'/'} className='linkVoltar'><i className="bi bi-arrow-left"></i> Voltar</Link></button>
+                                <button className='btn btn-secondary'>
+                                    <Link to={'/'} className='btnVoltar'>
+                                        <i className="bi bi-arrow-left"></i> Voltar
+                                    </Link>
+                                </button>
                             </div>
 
-                            <div className='col-md-6' style={{ textAlign: "right" }}>
-                                <button className='btn btn-primary' type='submit'><i className="bi bi-check"></i> Salvar</button>
+                            <div className='col-md-6 btnSalvar'>
+                                <button 
+                                    className='btn btn-primary' 
+                                    type='submit'>
+                                    <i className="bi bi-check"></i> Salvar
+                                </button>
                             </div>
                         </div>
                     </div>

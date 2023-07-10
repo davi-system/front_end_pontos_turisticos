@@ -1,9 +1,14 @@
-.linkCadastro {
-    text-decoration: none;
-    color: #fff;
+.main {
+    width: 60%;
+    margin: 0 auto;
 }
 
-.linkDetalhes {
+.divBtnCadastro {
+    text-align: right;
+    margin-top: 70px;
+}
+
+.btnLink {
     text-decoration: none;
     color: #fff;
 }
