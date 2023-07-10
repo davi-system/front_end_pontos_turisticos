@@ -1,7 +1,7 @@
 import './Add.css';
 import React from 'react';
 import api from '../axios/api';
-import imgPontoTuristicos from '../img/pontos-turisticos.png';
+import imgPontoTuristico from '../img/pontos-turisticos.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -31,7 +31,7 @@ const Add = () => {
     return (
         <div className='main'>
             <div className='modal-header header'>
-                <img src={imgPontoTuristicos} alt="Imagem de Pontos Turísticos" className='imgPontoTuristico' />
+                <img src={imgPontoTuristico} alt="Imagem de Pontos Turísticos" className='imgPontoTuristico' />
                 <h2>Adicionar Ponto Turístico</h2>
             </div>
 

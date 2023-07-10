@@ -2,7 +2,7 @@ import './Home.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../axios/api';
-import imgPontoTuristicos from '../img/pontos-turisticos.png';
+import imgPontoTuristico from '../img/pontos-turisticos.png';
 import Swal from 'sweetalert2';
 
 const Home = _ => {
@@ -48,7 +48,7 @@ const Home = _ => {
                     <div className='col-md-12'>
                         <div className='row'>
                             <div className='col-md-6'>
-                                <img src={imgPontoTuristicos} alt="Imagem de Pontos Turisticos" style={{ width: "100%", marginTop: "10px" }} />
+                                <img src={imgPontoTuristico} alt="Imagem de Pontos Turisticos" style={{ width: "100%", marginTop: "10px" }} />
                             </div>
 
                             <div className='col-md-6 divBtnCadastro'>
