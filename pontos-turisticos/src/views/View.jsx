@@ -78,7 +78,7 @@ const View = _ => {
                     <div className='col-md-12'>
                         <div className='row'>
                             <div className='col-md-6'>
-                                <button className='btn btn-secondary'><Link to={'/'} className='linkVoltar'>Voltar</Link></button>
+                                <button className='btn btn-secondary'><Link to={'/'} className='linkVoltar'><i className="bi bi-arrow-left"></i> Voltar</Link></button>
                             </div>
                         </div>
                     </div>

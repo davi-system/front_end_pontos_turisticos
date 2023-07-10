@@ -69,7 +69,7 @@ const Add = () => {
                         <div className='row'>
                             <div className='col-md-12'>
                                 <label>Descrição</label>
-                                <textarea className='form-control' name='descricao' {...register('descricao')} required></textarea>
+                                <textarea className='form-control' name='descricao' maxLength={200} {...register('descricao')} required></textarea>
                             </div>
                         </div>
                     </div>

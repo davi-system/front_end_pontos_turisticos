@@ -11,7 +11,7 @@ const Edit = () => {
     let navigate = useNavigate();
 
     const { register, handleSubmit, reset } = useForm();
-    
+
     const [pontoTuristico, setPontoTuristico] = useState([]);
 
     const getPontoTuristico = async () => {
@@ -39,7 +39,7 @@ const Edit = () => {
 
             setTimeout(() => {
                 navigate('/');
-            }, 2000);           
+            }, 2000);
         }).catch((error) => {
             console.log(error);
         });
@@ -85,7 +85,7 @@ const Edit = () => {
                         <div className='row'>
                             <div className='col-md-12'>
                                 <label>Descrição</label>
-                                <textarea className='form-control' name='descricao' {...register('descricao')} required></textarea>
+                                <textarea className='form-control' name='descricao' maxLength={200} {...register('descricao')} required></textarea>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ const Edit = () => {
                                 <button className='btn btn-secondary'><Link to={'/'} className='linkVoltar'><i className="bi bi-arrow-left"></i> Voltar</Link></button>
                             </div>
 
-                            <div className='col-md-6' style={{ "textAlign": "right" }}>
+                            <div className='col-md-6' style={{ textAlign: "right" }}>
                                 <button className='btn btn-primary' type='submit'><i className="bi bi-check"></i> Salvar</button>
                             </div>
                         </div>
